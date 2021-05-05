@@ -11,9 +11,9 @@ window.addEventListener('DOMContentLoaded', () => {
         const newgamebttn = getElementById('new-game')
 
         if (player1Input.value !== '' && player2Input.value !== '') {
-            newgamebttn.classList.remove('disabled')
+            newgamebttn.disabled = true
         } else {
-            return
+            return 
         }
 
     })
