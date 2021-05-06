@@ -3,7 +3,7 @@ import Column from "./column.js";
 
 
 class Game {
-    constructor(playerOneName, playerTwoName, currPlayer = 1, winnerNumber = 0) {
+    constructor(playerOneName, playerTwoName, currPlayer = 1) {
         this.name1 = playerOneName
         this.name2 = playerTwoName
         this.currPlayer = currPlayer
@@ -11,24 +11,31 @@ class Game {
         for (let i = 0; i <= 6; i += 1) {
             this.columns.push(new Column());
         }
-        this.winnerNumber = winnerNumber
+        this.winnerNumber = 0
+
+    }
+    checkForTie () {
+
+        if (this.columns.every(el => el.isFull())) {
+            this.winnerNumber = 3
+        }
 
     }
 
     getName() {
-        return `${this.name1} vs. ${this.name2}`
-    }
-
-    checkForTie () {
-        if (this.columns.length === 42) {
-            this.winnerNumber = 3
-            console.log('this is a Tie')
+        if (this.winnerNumber === 0) {
+            return `${this.name1} vs. ${this.name2}`
+        } else if (this.winnerNumber === 3) {
+            return `${this.name1} ties with ${this.name2}`
         }
     }
+
+
 
     playInColumn(index) {
 
         this.columns[index].add(this.currPlayer)
+        this.checkForTie ()
 
         if (this.currPlayer === 1) {
             this.currPlayer = 2
@@ -36,7 +43,7 @@ class Game {
             this.currPlayer = 1
         }
 
-        checkForTie ()
+
     }
 
     getTokenAt(rowIndex, columnIndex) {
