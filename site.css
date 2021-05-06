@@ -98,19 +98,24 @@ body, html {
   }
 
   .token.red {
-    background-color: red;
+    background-image: url(./images/snoop_dogg.jpg);
+    background-size: contain;
+
   }
 
   .token.black {
-    background-color: black;
+    background-image: url(./images/Notorious.jpg);
+    background-size: contain;
   }
 
   .red .click-target:hover {
-    background-color: red;
+    background-image: url(./images/snoop_dogg.jpg);
+    background-size: contain;
   }
 
   .black .click-target:hover {
-    background-color: black;
+    background-image: url(./images/Notorious.jpg);
+    background-size: contain;
   }
 
   .full.click-target {
