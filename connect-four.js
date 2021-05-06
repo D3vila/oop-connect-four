@@ -19,6 +19,36 @@ function updateUI() {
         clickTargets.classList.add('black')
         clickTargets.classList.remove('red')
     }
+    for (let rows = 0; rows <= 5; rows++) {
+
+        for(let columns = 0; columns <= 6; columns++) {
+
+            const square = document.getElementById(`square-${rows}-${columns}`)
+            const tokenMethod = game.getTokenAt(rows, columns)
+            square.innerHTML = ''
+            if (tokenMethod === 2) {
+                const actualToken = document.createElement('div');
+                actualToken.classList.add('token','black')
+                square.appendChild(actualToken)
+            }
+            if (tokenMethod === 1) {
+                const actualToken = document.createElement('div');
+                actualToken.classList.add('token','red')
+                square.appendChild(actualToken)
+            }
+
+        }
+    }
+    for (let columns = 0; columns <= 6; columns ++) {
+        const currColumn = document.getElementById(`column-${columns}`)
+        if (game.isColumnFull(columns)) {
+            currColumn.classList.add('full')
+        } else {
+            currColumn.classList.remove('full')
+        }
+    }
+
+
 }
 
 const gameName = document.getElementById("game-name");
@@ -53,7 +83,14 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 
     document.getElementById('click-targets').addEventListener('click', event => {
-        game.playInColumn()
+        let targetId = event.target.id
+        let columnIndex;
+        if (targetId.startsWith('column-')) {
+            columnIndex = Number.parseInt(targetId[targetId.length - 1])
+        }
+        //let targetNum = Number.parseInt(targetId)
+        //console.log(columnIndex)
+        game.playInColumn(columnIndex)
         updateUI()
     })
 });

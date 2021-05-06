@@ -1,16 +1,26 @@
 
 class Column {
-    constructor () {
+    constructor() {
         this.tokens = []
     }
 
     add(playerNumber) {
-       this.tokens.push(playerNumber)
+        this.tokens.push(playerNumber)
     }
 
-    getTokenAt (rowNumber) {
-        return this.tokens[5 - rowNumber]
+    getTokenAt(rowIndex) {
+        return this.tokens[5 - rowIndex]
     }
+
+    isFull() {
+        if(this.tokens.length >= 6) {
+            return true;
+        } else {
+           return false;
+        }
+    }
+
+
 }
 
 
